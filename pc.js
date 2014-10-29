@@ -2564,24 +2564,31 @@ PeerConnectionWrapper.prototype = {
 
   checkStatsIceConnectionType : function PCW_checkStatsIceConnectionType(stats)
   {
+    info("get stats: " + stats);
     var lId;
     var rId;
     Object.keys(stats).forEach(function(name) {
       if ((stats[name].type === "candidatepair") &&
           (stats[name].selected)) {
+        info("found selected candidatepair");
         lId = stats[name].localCandidateId;
         rId = stats[name].remoteCandidateId;
       }
     });
+    info("lId: " + lId + " rId: " + rId);
     var lType = stats[lId].type;
     var rType = stats[rId].type;
+    info("lType: " + lType + " rType: " + rType);
     //var lIp = stats[lId].ipAddress;
     //var rIp = stats[rId].ipAddress;
     if (this.configuration.iceServers !== 'undefined') {
-      ok(ltype === "relayed" || rType === "relayed", "One peer uses a relay");
+      info("Ice Server configured");
+      ok((ltype === "relayed" || rType === "relayed"), "One peer uses a relay");
     } else {
-      ok(ltype !== "relayed" && rType !== "relayed", "Pure peer to peer call without a relay");
+      info("P2P configured");
+      ok((ltype !== "relayed" && rType !== "relayed"), "Pure peer to peer call without a relay");
     }
+    info("done");
   },
 
   /**
