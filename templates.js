@@ -24,15 +24,15 @@ function dumpSdp(test) {
     dump("ERROR: SDP answer: " + test._remote_answer.sdp.replace(/[\r]/g, ''));
   }
 
-  if (typeof test.pcLocal._local_ice_candidates !== 'undefined') {
-    dump("pcLocal._local_ice_candidates: " + JSON.stringify(test.pcLocal._local_ice_candidates));
-    dump("pcLocal._remote_ice_candidates: " + JSON.stringify(test.pcLocal._remote_ice_candidates));
-    dump("pcLocal._ice_candidates_to_add: " + JSON.stringify(test.pcLocal._ice_candidates_to_add));
+  if ((test.pcLocal) && (typeof test.pcLocal._local_ice_candidates !== 'undefined')) {
+    dump("pcLocal._local_ice_candidates: " + JSON.stringify(test.pcLocal._local_ice_candidates) + "\n");
+    dump("pcLocal._remote_ice_candidates: " + JSON.stringify(test.pcLocal._remote_ice_candidates) + "\n");
+    dump("pcLocal._ice_candidates_to_add: " + JSON.stringify(test.pcLocal._ice_candidates_to_add) + "\n");
   }
-  if (typeof test.pcRemote._local_ice_candidates !== 'undefined') {
-    dump("pcRemote._local_ice_candidates: " + JSON.stringify(test.pcRemote._local_ice_candidates));
-    dump("pcRemote._remote_ice_candidates: " + JSON.stringify(test.pcRemote._remote_ice_candidates));
-    dump("pcRemote._ice_candidates_to_add: " + JSON.stringify(test.pcRemote._ice_candidates_to_add));
+  if ((test.pcRemote) && (typeof test.pcRemote._local_ice_candidates !== 'undefined')) {
+    dump("pcRemote._local_ice_candidates: " + JSON.stringify(test.pcRemote._local_ice_candidates) + "\n");
+    dump("pcRemote._remote_ice_candidates: " + JSON.stringify(test.pcRemote._remote_ice_candidates) + "\n");
+    dump("pcRemote._ice_candidates_to_add: " + JSON.stringify(test.pcRemote._ice_candidates_to_add) + "\n");
   }
 
   if ((test.pcLocal) && (typeof test.pcLocal.iceConnectionLog !== 'undefined')) {
