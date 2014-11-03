@@ -2583,10 +2583,10 @@ PeerConnectionWrapper.prototype = {
     //var rIp = stats[rId].ipAddress;
     if (this.configuration.iceServers !== 'undefined') {
       info("Ice Server configured");
-      ok((ltype === "relayed" || rType === "relayed"), "One peer uses a relay");
+      ok(((ltype === "relayed") || (rType === "relayed")), "One peer uses a relay");
     } else {
       info("P2P configured");
-      ok((ltype !== "relayed" && rType !== "relayed"), "Pure peer to peer call without a relay");
+      ok(((ltype !== "relayed") && (rType !== "relayed")), "Pure peer to peer call without a relay");
     }
     info("done");
   },
