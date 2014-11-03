@@ -2583,7 +2583,7 @@ PeerConnectionWrapper.prototype = {
     //var rIp = stats[rId].ipAddress;
     if (this.configuration.iceServers !== 'undefined') {
       info("Ice Server configured");
-      var lcheck = (ltype == "relayed");
+      var lcheck = (lType == "relayed");
       info("lcheck: " + lcheck);
       var rcheck = (rType == "relayed");
       info("rcheck: " + rcheck);
