@@ -2576,8 +2576,8 @@ PeerConnectionWrapper.prototype = {
       }
     });
     info("lId: " + lId + " rId: " + rId);
-    var lType = stats[lId].type;
-    var rType = stats[rId].type;
+    var lType = stats[lId].candidateType;
+    var rType = stats[rId].candidateType;
     info("lType: " + lType + " rType: " + rType);
     //var lIp = stats[lId].ipAddress;
     //var rIp = stats[rId].ipAddress;
