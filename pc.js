@@ -2583,7 +2583,11 @@ PeerConnectionWrapper.prototype = {
     //var rIp = stats[rId].ipAddress;
     if (this.configuration.iceServers !== 'undefined') {
       info("Ice Server configured");
-      var check = ((ltype === "relayed") || (rType === "relayed"));
+      var lcheck = (ltype == "relayed");
+      info("lcheck: " + lcheck);
+      var rcheck = (rType == "relayed");
+      info("rcheck: " + rcheck);
+      var check = (lcheck || rcheck);
       info("check: " + check);
       ok(check, "One peer uses a relay");
     } else {
