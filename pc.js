@@ -2564,13 +2564,11 @@ PeerConnectionWrapper.prototype = {
 
   checkStatsIceConnectionType : function PCW_checkStatsIceConnectionType(stats)
   {
-    info("get stats: " + stats);
     var lId;
     var rId;
     Object.keys(stats).forEach(function(name) {
       if ((stats[name].type === "candidatepair") &&
           (stats[name].selected)) {
-        info("found selected candidatepair");
         lId = stats[name].localCandidateId;
         rId = stats[name].remoteCandidateId;
       }
@@ -2578,18 +2576,17 @@ PeerConnectionWrapper.prototype = {
     info("lId: " + lId + " rId: " + rId);
     var lType = stats[lId].candidateType;
     var rType = stats[rId].candidateType;
+    info("Veryfying: local=" + stats[lId] + " remote=" + stats[rId]);
     info("lType: " + lType + " rType: " + rType);
-    //var lIp = stats[lId].ipAddress;
-    //var rIp = stats[rId].ipAddress;
+    var lIp = stats[lId].ipAddress;
+    var rIp = stats[rId].ipAddress;
+    info("lIp: " + lIp + " rIp: " + rIp);
     if (this.configuration.iceServers !== 'undefined') {
       info("Ice Server configured");
-      var lcheck = (lType == "relayed");
-      info("lcheck: " + lcheck);
-      var rcheck = (rType == "relayed");
-      info("rcheck: " + rcheck);
-      var check = (lcheck || rcheck);
-      info("check: " + check);
-      ok(check, "One peer uses a relay");
+      var serverIp = this.configuration.iceServers[0].url.split(':')[1];
+      info("serverIp: " + serverIp);
+      ok((lType === "relayed" || rType === "relayed") ||
+         (lIp === serverIp || rIp === serverIp), "One peer uses a relay");
     } else {
       info("P2P configured");
       ok(((ltype !== "relayed") && (rType !== "relayed")), "Pure peer to peer call without a relay");
