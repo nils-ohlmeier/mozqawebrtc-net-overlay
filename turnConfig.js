@@ -10,6 +10,6 @@
   */
 
 var turnServers = {
-  local: { iceServers: [{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.128"},{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.128?transport=tcp"}] },
-  remote: { iceServers: [{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.128"},{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.128?transport=tcp"}] }
+  local: { iceServers: [{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.50"},{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.50?transport=tcp"}] },
+  remote: { iceServers: [{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.50"},{"username":"webrtc","credential":"firefox","url":"turn:10.252.73.50?transport=tcp"}] }
 };
