@@ -2562,8 +2562,19 @@ PeerConnectionWrapper.prototype = {
     }
   },
 
+  /**
+   * Compares the Ice server configured for this PeerConnectionWrapper
+   * with the ICE candidates received in the RTCP stats.
+   *
+   * @param {object} stats
+   *        The stats to be verified for relayed vs. direct connection.
+   */
   checkStatsIceConnectionType : function PCW_checkStatsIceConnectionType(stats)
   {
+    if (Object.keys(stats).length === 0) {
+      info("checkStatsIceConnectionType called with emtpy stats");
+      return;
+    }
     var lId;
     var rId;
     Object.keys(stats).forEach(function(name) {
@@ -2575,11 +2586,16 @@ PeerConnectionWrapper.prototype = {
     });
     info("Veryfying: local=" + JSON.stringify(stats[lId]) +
          " remote=" + JSON.stringify(stats[rId]));
+    if ((typeof stats[lId] === 'undefined') ||
+        (typeof stats[rId] === 'undefined')) {
+      info("checkStatsIceConnectionType failed to find candidatepair IDs");
+      return;
+    }
     var lType = stats[lId].candidateType;
     var rType = stats[rId].candidateType;
     var lIp = stats[lId].ipAddress;
     var rIp = stats[rId].ipAddress;
-    if (this.configuration.iceServers !== 'undefined') {
+    if ((this.configuration) && (this.configuration.iceServers !== 'undefined')) {
       info("Ice Server configured");
       var serverIp = this.configuration.iceServers[0].url.split(':')[1];
       ok((lType === "relayed" || rType === "relayed") ||
