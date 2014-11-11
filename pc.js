@@ -2571,10 +2571,6 @@ PeerConnectionWrapper.prototype = {
    */
   checkStatsIceConnectionType : function PCW_checkStatsIceConnectionType(stats)
   {
-    if (Object.keys(stats).length === 0) {
-      info("checkStatsIceConnectionType called with emtpy stats");
-      return;
-    }
     var lId;
     var rId;
     Object.keys(stats).forEach(function(name) {
@@ -2604,7 +2600,6 @@ PeerConnectionWrapper.prototype = {
       info("P2P configured");
       ok(((ltype !== "relayed") && (rType !== "relayed")), "Pure peer to peer call without a relay");
     }
-    info("done");
   },
 
   /**
