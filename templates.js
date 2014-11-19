@@ -67,6 +67,7 @@ var commandsPeerConnection = [
     'PC_SETUP_SIGNALING_CLIENT',
     function (test) {
       if (test.steeplechase) {
+        test.setTimeout(10000);
         test.setupSignalingClient();
         test.registerSignalingCallback("ice_candidate", function (message) {
           var pc = test.pcRemote ? test.pcRemote : test.pcLocal;
@@ -184,7 +185,7 @@ var commandsPeerConnection = [
           test._offer_constraints = test.pcLocal.constraints;
           test._offer_options = test.pcLocal.offerOptions;
         }
-        test.next();
+        //test.next();
       });
     }
   ],
