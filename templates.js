@@ -185,7 +185,7 @@ var commandsPeerConnection = [
           test._offer_constraints = test.pcLocal.constraints;
           test._offer_options = test.pcLocal.offerOptions;
         }
-        //test.next();
+        test.next();
       });
     }
   ],
